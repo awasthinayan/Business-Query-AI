@@ -102,14 +102,13 @@ function DashboardPage() {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.4 }}
           />
-          <motion.button
-            type="submit"
-            className="bg-indigo-600 text-white px-6 py-2 rounded-lg hover:bg-indigo-700 transition hover cursor-pointer"
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            Send
-          </motion.button>
+          <button
+  type="submit"
+  className="bg-indigo-600 text-white px-6 py-2 rounded-lg hover:bg-indigo-700 transition hover cursor-pointer"
+>
+  Send
+</button>
+
         </form>
 
         {/* Chat Section */}

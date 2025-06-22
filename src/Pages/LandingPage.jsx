@@ -68,30 +68,23 @@ function LandingPage() {
         Ask your business questions, get AI-powered insights, and visualize your strategies in graphs!
       </motion.p>
 
-      <motion.div 
-        className="flex gap-6 relative z-10"
-        variants={buttonVariants}
-      >
+      <div className="flex gap-6 relative z-10">
         <Link to="/dashboard">
-          <motion.button 
-            whileHover={{ scale: 1.1, rotate: 2 }}
-            whileTap={{ scale: 0.95 }}
-            className="bg-white text-purple-700 font-bold py-3 px-6 rounded-full hover:bg-purple-100 transition text-lg hover cursor-pointer"
+          <button 
+            className="bg-white text-purple-700 font-bold py-3 px-6 rounded-full hover:bg-purple-100 transition text-lg cursor-pointer"
           >
             Get Started
-          </motion.button>
+          </button>
         </Link>
 
         <Link to="/learn-more">
-          <motion.button 
-            whileHover={{ scale: 1.1, rotate: -2 }}
-            whileTap={{ scale: 0.95 }}
-            className="bg-transparent border-2 border-white text-white py-3 px-8 rounded-lg hover:bg-white hover:text-purple-600 transition font-semibold hover cursor-pointer"
+          <button 
+            className="bg-transparent border-2 border-white text-white py-3 px-8 rounded-lg hover:bg-white hover:text-purple-600 transition font-semibold cursor-pointer"
           >
             Learn More
-          </motion.button>
+          </button>
         </Link>
-      </motion.div>
+      </div>
 
       <motion.div 
         id="learn-more" 

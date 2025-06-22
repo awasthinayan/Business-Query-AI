@@ -46,26 +46,6 @@ function AuthPage({ setIsAuthenticated }) {
     setFormData({ name: '', email: '', password: '' });
   };
 
-  // Animation Variants
-  const containerVariant = {
-    hidden: { opacity: 0, scale: 0.95 },
-    visible: { 
-      opacity: 1, 
-      scale: 1, 
-      transition: {
-        type: "spring",
-        stiffness: 80,
-        damping: 12,
-        staggerChildren: 0.2
-      }
-    }
-  };
-
-  const childVariant = {
-    hidden: { opacity: 0, y: 30 },
-    visible: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 70 } }
-  };
-
   return (
     <motion.div
       className="flex items-center justify-center min-h-screen bg-gradient-to-br from-purple-500 via-pink-500 to-red-400 p-6"
@@ -74,105 +54,87 @@ function AuthPage({ setIsAuthenticated }) {
       exit={{ opacity: 0 }}
     >
       <motion.div
-        variants={containerVariant}
-        initial="hidden"
-        animate="visible"
-        className="bg-white p-10 rounded-3xl shadow-2xl w-full max-w-lg transform hover:scale-105 transition-transform duration-500"
+        className="bg-white p-10 rounded-3xl shadow-2xl w-full max-w-lg"
       >
-        <motion.h2
-          className="text-4xl font-bold mb-8 text-center text-purple-700"
-          variants={childVariant}
-        >
+        <h2 className="text-4xl font-bold mb-8 text-center text-purple-700">
           {isRegistering ? "Create Account" : "Welcome Back"}
-        </motion.h2>
+        </h2>
 
-        <motion.div 
-          className="flex justify-center mb-8"
-          variants={childVariant}
-        >
-          <motion.button 
+        {/* ✅ Clean Login/Register buttons with hover only */}
+        <div className="flex justify-center mb-8">
+          <button 
             onClick={() => { setIsRegistering(false); setMessage(''); }}
-            whileHover={{ scale: 1.1 }}
-            className={`px-5 py-2 mx-2 rounded-full transition-all duration-300 hover cursor-pointer ${
-              !isRegistering ? 'bg-purple-600 text-white' : 'bg-gray-200 text-black'
+            className={`px-5 py-2 mx-2 rounded-full font-semibold ${
+              !isRegistering 
+              ? 'bg-purple-600 text-white hover:bg-purple-700 cursor-pointer' 
+              : 'bg-gray-200 text-black hover:bg-blue-300'
             }`}
           >
             Login
-          </motion.button>
+          </button>
 
-          <motion.button 
+          <button 
             onClick={() => { setIsRegistering(true); setMessage(''); }}
-            whileHover={{ scale: 1.1 }}
-            className={`px-5 py-2 mx-2 rounded-full transition-all duration-300 hover cursor-pointer ${
-              isRegistering ? 'bg-purple-600 text-white' : 'bg-gray-200 text-black'
+            className={`px-5 py-2 mx-2 rounded-full font-semibold ${
+              isRegistering 
+              ? 'bg-purple-600 text-white hover:bg-purple-700' 
+              : 'bg-gray-200 text-black hover:bg-purple-100 cursor-pointer'
             }`}
           >
             Register
-          </motion.button>
-        </motion.div>
+          </button>
+        </div>
 
-        <motion.form 
-          onSubmit={handleSubmit}
-          className="flex flex-col gap-5"
-        >
+        <form onSubmit={handleSubmit} className="flex flex-col gap-5">
           {isRegistering && (
-            <motion.input
+            <input
               type="text"
               name="name"
               placeholder="Full Name"
               value={formData.name}
               onChange={handleChange}
-              variants={childVariant}
-              whileFocus={{ scale: 1.03 }}
               className="p-3 border rounded-xl shadow-md focus:outline-none focus:ring-2 focus:ring-purple-400"
               required
             />
           )}
 
-          <motion.input
+          <input
             type="email"
             name="email"
             placeholder="Email Address"
             value={formData.email}
             onChange={handleChange}
-            variants={childVariant}
-            whileFocus={{ scale: 1.03 }}
             className="p-3 border rounded-xl shadow-md focus:outline-none focus:ring-2 focus:ring-purple-400"
             required
           />
 
-          <motion.input
+          <input
             type="password"
             name="password"
             placeholder="Password"
             value={formData.password}
             onChange={handleChange}
-            variants={childVariant}
-            whileFocus={{ scale: 1.03 }}
             className="p-3 border rounded-xl shadow-md focus:outline-none focus:ring-2 focus:ring-purple-400"
             required
           />
 
-          <motion.button 
+          <button 
             type="submit" 
-            className="bg-purple-600 text-white py-3 rounded-xl font-bold hover:bg-purple-700 transition"
-            variants={childVariant}
-            whileHover={{ scale: 1.05 }}
+            className="bg-purple-600 text-white py-3 rounded-xl font-bold hover:bg-purple-700 cursor-pointer"
           >
             {isRegistering ? "Register Now" : "Login"}
-          </motion.button>
+          </button>
 
           {message && (
-            <motion.p 
+            <p 
               className={`text-center mt-2 text-sm font-medium ${
                 messageType === 'error' ? 'text-red-600' : 'text-green-600'
               }`}
-              variants={childVariant}
             >
               {message}
-            </motion.p>
+            </p>
           )}
-        </motion.form>
+        </form>
       </motion.div>
     </motion.div>
   );
